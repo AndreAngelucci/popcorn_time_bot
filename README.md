@@ -1,0 +1,1 @@
+Script que identifica quando um novo filme é adicionado ao catálogo do Popcorn Time e escreve um Tweet avisando.
