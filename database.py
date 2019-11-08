@@ -27,7 +27,7 @@ class Mongo_Filmes:
         novos = []
         try:
             for filme in lista_filmes:
-                if not(self.collection_filmes.find({"_id": filme["_id"]})):
+                if (self.collection_filmes.count_documents({"_id": filme["_id"]}) == 0):
                     self.collection_filmes.insert_one(filme)
                     novos.append(filme)
         finally:            

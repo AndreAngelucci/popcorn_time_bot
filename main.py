@@ -1,6 +1,7 @@
 import requests
 import json
 import database
+import random
 
 BASE_URL = "https://tv-v2.api-fetch.website/"
 r = requests.get(f"{BASE_URL}movies")
@@ -25,3 +26,16 @@ for index, page in enumerate(movie_pages):
 #retorna os filmes novos
 filmes_novos = database_filmes.grava_filmes(todos_filmes)
 print(f"Foram encontrados {len(filmes_novos)} novos filmes")
+
+#monta um tweet com os dados do filme
+array_saudacao = [
+    "Opa, encontrei novos filmes no catálogo!",
+    "Tem novos filmes no Popcorn Time!"
+]
+#saudacao randomica
+str_tweet = array_saudacao[random.randint(0, len(array_saudacao) - 1)] + "\n"
+titulos = []
+for f in filmes_novos:
+    titulos.append(f["title"])
+str_tweet += f"Novos filmes: {'; '.join(titulos)}."
+print(str_tweet)
