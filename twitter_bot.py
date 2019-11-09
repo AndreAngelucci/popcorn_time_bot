@@ -20,4 +20,7 @@ class Twitter_Bot:
         self.twitter_api = tweepy.API(auth)
 
     def tweetar(self, str_tweet):
-        self.twitter_api.update_status(str_tweet)
+        try:
+            return self.twitter_api.update_status(str_tweet)
+        except tweepy.error.TweepError as twitter_erro:
+            raise Exception(f"Falha ao tweetar: {twitter_erro}")
